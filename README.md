@@ -4,7 +4,7 @@ visit website and download Python 3.11.4
 https://www.python.org/downloads/
 
 ------------------------------------
- create project
+ create project and clik right mouse in file editor  .py for installing pip install xxx
  -----------------------------------
 In the terminal, run the following commands to install the required packages:
 ---------------------
