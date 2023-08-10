@@ -1,0 +1,26 @@
+import yfinance as yf
+import mplfinance as mpf
+
+# Function to create the tradingview-style chart with moving averages
+def create_tradingview_chart(stock_symbol, start_date, end_date):
+    # Fetch historical data from Yahoo Finance
+    data = yf.download(stock_symbol, start=start_date, end=end_date)
+
+''    # Define the moving averages (20, 50, 100)
+    moving_averages = [20, 50, 100]
+
+    # Create a dictionary to store the moving average data
+    mav_data = {}
+    for ma in moving_averages:
+        mav_data[f'MA{ma}'] = data['Close'].rolling(window=ma).mean()
+
+    # Plot the chart with moving average overlays
+    mpf.plot(data, type='candle', style='charles',
+             title=f'{stock_symbol} TradingView Chart with Moving Averages',
+             ylabel='Price', ylabel_lower='Volume', mav=mav_data)
+
+# Example: Create a tradingview-style chart for Apple (AAPL) stock from 2022-01-01 to 2022-07-31
+stock_symbol = 'AAPL'
+start_date = '2022-01-01'
+end_date = '2022-07-31'
+create_tradingview_chart(stock_symbol, start_date, end_date)
